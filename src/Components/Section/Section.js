@@ -1,9 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-const H2 = styled.h2`
-font-size: 38px;
-text-align: center;
-`;
+import {H2} from './StyleSection';
 
 const Section = ({title, children}) => {
     return (

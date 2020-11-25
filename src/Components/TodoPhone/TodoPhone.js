@@ -12,9 +12,7 @@ import { Title, Div } from './StyleTodoPhone';
 const TodoPhone = () => {
 	const [error, setError] = useState('');
 	const filterValue = useSelector((state) => state.filter);
-	console.log(filterValue);
 	const contacts = useSelector((state) => state.todoList);
-	console.log(contacts);
 	const dispatch = useDispatch();
 	
 	useEffect(() => {
@@ -57,9 +55,9 @@ const TodoPhone = () => {
 	}
 
 	const searchItem = () => {
-		return contacts.filter((contact) => contact.name.toLowerCase().includes(filterValue.toLowerCase()))
-		// if (filter.length > 0) {
-		// } else return contacts
+		if (contacts.length > 0) {
+			return contacts.filter((contact) => contact.name.toLowerCase().includes(filterValue.toLowerCase()))
+		} else return contacts
 	}
 
 	return (
@@ -73,7 +71,7 @@ const TodoPhone = () => {
 			<Form addTask={addTask} contacts={contacts} />
 			<Section title={"Contacts:"}>
 				{contacts.length > 1 && <FilterForm />}
-				<PhoneItem deleteTask={deleteTask} contacts={searchItem().length > 0 ? searchItem() : contacts} />
+				<PhoneItem deleteTask={deleteTask} contacts={searchItem()} />
 			</Section>
 		</>
 	)

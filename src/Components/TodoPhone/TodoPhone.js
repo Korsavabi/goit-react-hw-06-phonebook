@@ -20,20 +20,18 @@ const TodoPhone = () => {
 		if (perslistedContacts) {
 			dispatch(setItem((JSON.parse(perslistedContacts))))
 		}
-	}, [dispatch])
-
-	useEffect(() => {
-		localStorage.setItem("contacts", JSON.stringify(contacts))
-	})
-	useEffect(() => {
 		if (!!error) {
 			setTimeout(() => {
 				setError(false)
 			}, 1000)
 
 		}
-	}, [error])
+	}, [dispatch, error])
 
+	useEffect(() => {
+		localStorage.setItem("contacts", JSON.stringify(contacts))
+	})
+	
 	const addTask = (name, number) => {
 		const contact = {
 			name,
